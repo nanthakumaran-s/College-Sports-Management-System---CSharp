@@ -6,7 +6,6 @@
         public static void Main(string[] args)
         {
             queries = new SQLQueries();
-            queries.Connect();
             Console.WriteLine("Hello Director!!!");
             while (true)
             {
@@ -42,7 +41,6 @@
                         break;
                 }
             }
-            queries.Close();
         }
 
         public static void SportsSystem()
@@ -132,10 +130,11 @@
                     "2. View Tournaments\n" +
                     "3. Remove Tournaments\n" +
                     "4. Register Player\n" +
-                    "5. Exit");
+                    "5. Make Payment\n" +
+                    "6. Exit");
                 Console.WriteLine();
                 int userInput = int.Parse(Console.ReadLine()!);
-                if (userInput == 5)
+                if (userInput == 6)
                 {
                     break;
                 }
@@ -153,6 +152,9 @@
                     case 4: 
                         tournament.RegisterTournament(queries);
                         break;
+                    case 5:
+                        tournament.Pay(queries);
+                        break;
                     default:
                         break;
                 }
@@ -164,6 +166,7 @@
         public static void ScorecardSystem()
         {
             Console.WriteLine("Scorecard System Started");
+            Scorecard scorecard = new Scorecard();
             while (true)
             {
                 Console.WriteLine("Choose an Option");
@@ -181,6 +184,18 @@
                 }
                 switch (userInput)
                 {
+                    case 1:
+                        scorecard.AddScoreCard(queries);
+                        break;
+                    case 2:
+                        scorecard.UpdateScorecard(queries);
+                        break;
+                    case 3:
+                        scorecard.ViewScorecard(queries);
+                        break;
+                    case 4:
+                        scorecard.RemoveScorecard(queries);
+                        break;
                     default:
                         break;
                 }

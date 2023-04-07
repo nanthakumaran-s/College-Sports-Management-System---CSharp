@@ -55,4 +55,20 @@
         }
         return;
     }
+
+    public void Pay(SQLQueries queries)
+    {
+        queries.ViewTournament();
+        Console.Write("ID of the tournament that the player is paying for: ");
+        int tournamentID = int.Parse(Console.ReadLine()!);
+        queries.ViewPlayers();
+        Console.Write("ID of the player: ");
+        int playerID = int.Parse(Console.ReadLine()!);
+        bool response = queries.Payment(tournamentID, playerID);
+        if (response)
+        {
+            Console.WriteLine("Payment Successful");
+        }
+        return;
+    }
 }
